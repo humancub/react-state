@@ -1,25 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import './App.css';
+import React from 'react';
+
+class App extends React.Component {
+  
+    state = {
+      name: 'Stepan', 
+      age: 20 , 
+      nameState: false,
+      showInfo: true
+  }
+ 
+  changeInfo = () => {
+    this.setState({nameState: !this.state.nameState})
+  }
+   
+
+   
+  render(){
+    const { showInfo } = this.state;
+
+    return (
+
+      // Changed only name and age 
+
+      // <div>
+      //  {this.state.nameState ? <h3>Name: Mykola Age: 30</h3> : <h3>Name: Stepan Age: 20</h3>}
+      //   <button onClick={this.changeInfo}>
+      //     Click here!
+      //   </button>
+      // </div>
+
+
+      // Hide text and change button
+
+    <div>
+      <div style={{ display: (showInfo ? 'block' : 'none') }}> {this.state.nameState ? <h3>Name: Mykola Age: 30</h3> : <h3>Name: Stepan Age: 20</h3>}</div>
+      <button onClick={() => {this.setState({ showInfo: !showInfo }); this.changeInfo()}}>{showInfo ? "Hide Info" : "Show Info"}</button>
+    </div>  
+
+    )
+  }
 }
 
-export default App;
+
+
+export default App
